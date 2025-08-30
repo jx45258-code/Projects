@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Scam Test</title>
+    <script>
+        async function submitForm(event) {
+            event.preventDefault();
+            const form = document.getElementById("chat-form");
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: "POST",
+                body: formData
+            });
+            const result = await response.json();
+            document.getElementById("output").textContent = JSON.stringify(result, null, 2);
+        }
+    </script>
+</head>
+<body>
+    <h1>AI Scam Analyzer Test</h1>
+    <form id="chat-form" method="POST" enctype="multipart/form-data" action="{{ url_for('chat.chat_home') }}" onsubmit="submitForm(event)">
+        <label for="user_input">Enter Text:</label><br>
+        <textarea id="user_input" name="user_input" rows="5" cols="60"></textarea><br><br>
+
+        <label for="file_input">Or upload an image:</label><br>
+        <input type="file" id="file_input" name="file_input"><br><br>
+
+        <button type="submit">Analyze</button>
+    </form>
+
+    <h2>Raw JSON Output</h2>
+    <pre id="output" style="background:#f0f0f0; padding:10px;"></pre>
+</body>
+</html>

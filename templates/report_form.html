@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-4">
+    <h2>Report a Scam</h2>
+    <form method="POST" action="{{ url_for('chat.report_scam') }}">
+        <div class="mb-3">
+            <label for="scammer_email" class="form-label">Scammer Email</label>
+            <input type="email" class="form-control" id="scammer_email" name="scammer_email" value="{{ scammer_email }}">
+        </div>
+        <div class="mb-3">
+            <label for="scammer_company" class="form-label">Scammer Company</label>
+            <input type="text" class="form-control" id="scammer_company" name="scammer_company" value="{{ scammer_company }}">
+        </div>
+        <div class="mb-3">
+            <label for="scammer_phone" class="form-label">Scammer Phone</label>
+            <input type="text" class="form-control" id="scammer_phone" name="scammer_phone" value="{{ scammer_phone }}">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description / AI Analysis</label>
+            <textarea class="form-control" id="description" name="description" rows="5">{{ description }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-danger">Submit Report</button>
+    </form>
+</div>
+{% endblock %}

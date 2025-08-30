@@ -1,0 +1,114 @@
+/* General body styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #ffffff; /* white background */
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #dee2e6; /* subtle border */
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: #212529; /* dark text */
+}
+
+.nav-link {
+    font-weight: 500;
+    margin-left: 0.5rem;
+    color: #212529;
+}
+.nav-link.active {
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+    .nav-link:hover {
+        color: #0066cc; /* highlight on hover */
+    }
+
+/* Footer */
+footer {
+    background-color: #f8f9fa; /* light gray instead of black */
+    color: #212529; /* dark text */
+    font-size: 0.9rem;
+    padding: 1rem 0;
+    border-top: 1px solid #dee2e6;
+    text-align: center;
+}
+
+    footer a {
+        color: #212529;
+        text-decoration: underline;
+    }
+
+        footer a:hover {
+            color: #0066cc;
+        }
+
+
+/* Jumbotron style for chat */
+.jumbotron {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    padding: 2rem;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #0066cc;
+    border-color: #0066cc;
+    font-weight: 600;
+}
+
+    .btn-primary:hover {
+        background-color: #005bb5;
+        border-color: #005bb5;
+    }
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: #ffffff;
+    font-size: 0.9rem;
+    padding: 1rem 0;
+}
+
+    footer a {
+        color: #ffffff;
+        text-decoration: underline;
+    }
+
+        footer a:hover {
+            color: #cce0ff;
+        }
+
+/* Analysis output box */
+pre#result {
+    background-color: #f1f1f1;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Form fields spacing */
+form .form-label {
+    font-weight: 500;
+}
+
+form .form-control {
+    border-radius: 0.3rem;
+}
+
+/* Responsive spacing */
+@media (max-width: 576px) {
+    .navbar-nav {
+        text-align: center;
+    }
+}

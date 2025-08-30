@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-4">
+    <h2 class="mb-4">Reported Scam Entries</h2>
+
+    {% if reports %}
+    <div class="accordion" id="reportsAccordion">
+        {% for report in reports %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading{{ report.id }}">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ report.id }}" aria-expanded="false" aria-controls="collapse{{ report.id }}">
+                    {{ report.scammer_email or report.scammer_phone }}
+                </button>
+            </h2>
+            <div id="collapse{{ report.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ report.id }}" data-bs-parent="#reportsAccordion">
+                <div class="accordion-body">
+                    {% if report.scammer_company %}
+                    <p><strong>Potential Scammer Company:</strong> {{ report.scammer_company }}</p>
+                    {% endif %}
+                    {% if report.scammer_email %}
+                    <p><strong>Email:</strong> {{ report.scammer_email }}</p>
+                    {% endif %}
+                    {% if report.scammer_phone %}
+                    <p><strong>Phone:</strong> {{ report.scammer_phone }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No scam reports recorded yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
