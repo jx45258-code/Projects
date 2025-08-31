@@ -1,0 +1,61 @@
+body {
+    background: #f4f7fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.success-card {
+    background: #ffffff;
+    border: 1px solid #e0e6ed;
+    border-radius: 1.5rem;
+    max-width: 650px;
+    margin: auto;
+    transition: transform 0.2s ease-in-out;
+}
+
+    .success-card:hover {
+        transform: translateY(-5px);
+    }
+
+.btn {
+    border-radius: 50px;
+    padding: 0.6rem 1.4rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+
+.btn-primary {
+    background-color: #2a6ebb;
+    border-color: #2a6ebb;
+    color: #fff;
+}
+
+    .btn-primary:hover {
+        background-color: #1f5291;
+        border-color: #1f5291;
+    }
+
+
+.btn-outline-primary {
+    color: #2a6ebb;
+    border-color: #c3d4e6;
+    background-color: #ffffff;
+}
+
+    .btn-outline-primary:hover {
+        background-color: #f0f6fc;
+        color: #1f5291;
+        border-color: #2a6ebb;
+    }
+
+
+.btn-accent {
+    background-color: #2bb3a3;
+    border-color: #2bb3a3;
+    color: #fff;
+}
+
+    .btn-accent:hover {
+        background-color: #218579;
+        border-color: #218579;
+    }

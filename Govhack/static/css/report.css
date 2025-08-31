@@ -1,10 +1,10 @@
-/* General Page Styles */
+
 h1 {
     font-weight: 700;
     margin-bottom: 2rem;
 }
 
-/* Search Box */
+
 .input-group .form-control {
     border-radius: 0.25rem 0 0 0.25rem;
 }
@@ -20,7 +20,6 @@ h1 {
         background-color: #0056b3;
     }
 
-/* Table Styles */
 #caller-table {
     width: 100%;
     border-collapse: separate;
@@ -47,7 +46,6 @@ h1 {
         background-color: #fff3cd !important;
     }
 
-/* Badge Colors */
 .badge.bg-danger {
     background-color: #dc3545;
 }

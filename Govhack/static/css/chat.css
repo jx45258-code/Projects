@@ -1,15 +1,13 @@
-/* Chat Page Styles */
 
-/* Container for the entire chat page */
 .chat-container {
     max-width: 900px;
     margin: 0 auto;0
 }
-/* Top Three Section */
+
 .top-three .scam-score-section {
     display: flex;
-    flex-direction: column; /* Stack the image under the text */
-    align-items: flex-start; /* Keep text aligned left */
+    flex-direction: column; 
+    align-items: flex-start; 
 }
 
     .top-three .scam-score-section strong {
@@ -17,15 +15,14 @@
     }
 
 .top-three .scam-score-image img {
-    max-width: 100px; /* Adjust size of speedometer image */
+    max-width: 100px;/
 }
 
-/* Optional: even spacing for all three columns */
+
 .top-three > .col-md-4 {
     padding-top: 0.5rem;
 }
 
-/* Top Input Section */
 .chat-top-section {
     text-align: left;
     margin-bottom: 2rem;
@@ -62,22 +59,21 @@
         background-color: #0056b3;
     }
 
-/* Gap between analyze button and results */
+
 .chat-result-section {
     margin-top: 2rem;
 }
 
-    /* Top three items row */
+
     .chat-result-section .row {
         margin-bottom: 1rem;
     }
 
-/* Speedometer */
 #speedometer {
     display: block;
 }
 
-/* See More Section */
+
 .see-more-section {
     margin-top: 1rem;
 }
@@ -92,7 +88,7 @@
     .see-more:hover {
         color: #0056b3;
     }
-/* Bottom Right Section */
+
 .chat-result-section .bottom-right {
     display: flex;
     flex-direction: column;
@@ -112,7 +108,7 @@
 }
 
 
-/* AI analysis pre blocks */
+
 #raw-analysis {
     background-color: #f8f9fa;
     padding: 0.5rem;
@@ -120,7 +116,7 @@
     white-space: pre-wrap;
 }
 
-/* Factors list */
+
 .chat-result-section ul {
     padding-left: 1rem;
     margin-bottom: 0;

@@ -3,7 +3,7 @@ from collections import Counter
 import sqlite3
 import os
 
-# Create a blueprint for main routes
+
 main_bp = Blueprint("main", __name__)
 DB_PATH = os.path.join(os.path.dirname(__file__), "static", "db", "fake_callers.db")
 REPORT_DB = os.path.join(os.path.dirname(__file__), "static", "db", "report_scams.db")
@@ -36,10 +36,10 @@ def who_called():
     rows = c.fetchall()
     conn.close()
     
-    # Count how many times each number occurs
+    
     phone_counts = Counter(row['phone_number'] for row in rows)
     
-    # Group by phone number (aggregate repeated rows)
+    
     grouped = {}
     for row in rows:
         phone = row['phone_number']
@@ -61,7 +61,7 @@ def who_called():
 
 @main_bp.route("/report-scam", methods=["GET", "POST"])
 def submit_scam_report():
-    # Prefill values from query parameters (optional)
+  
     prefill = {
         "scam_type": request.args.get("scam_type", ""),
         "scammer_contact": request.args.get("scammer_contact", ""),
@@ -75,7 +75,7 @@ def submit_scam_report():
         reporter_email = request.form.get("reporter_email", "").strip()
         description = request.form.get("description", "").strip()
 
-        # Save to report_scams.db
+       
         conn = sqlite3.connect(REPORT_DB)
         c = conn.cursor()
         c.execute('''

@@ -1,7 +1,7 @@
 import os
 import sqlite3
 
-# Path for the database
+
 DB_FOLDER = os.path.join(os.path.dirname(__file__), "../files")
 os.makedirs(DB_FOLDER, exist_ok=True)
 DB_PATH = os.path.join(DB_FOLDER, "scam_db.db")

@@ -12,7 +12,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 @bp.route("/", methods=["GET", "POST"])
 def chat_home():
     result = None
-    report_url = None  # URL for prefilled report form
+    report_url = None 
 
     if request.method == "POST":
         user_input = request.form.get("user_input", "")
@@ -29,7 +29,7 @@ def chat_home():
             os.remove(file_path)
 
         if result:
-            # Build URL to prefill report form
+           
             report_url = url_for(
                 "main.submit_scam_report",
                 scam_type=result.get("scam_type") or "",

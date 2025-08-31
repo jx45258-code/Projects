@@ -4,12 +4,19 @@
 
 {% block content %}
 <div class="container my-5">
-    <div class="jumbotron text-center">
-        <h2 class="mb-4">Thank You!</h2>
-        <p>Your scam report has been successfully submitted.</p>
-        <p>We appreciate your help in keeping the community safe.</p>
-        <a href="{{ url_for('main.home') }}" class="btn btn-primary mt-3">Back to Home</a>
-        <a href="{{ url_for('chat.chat_home') }}" class="btn btn-secondary mt-3">Analyze Another Scam</a>
+    <div class="success-card text-center shadow-lg p-5 rounded">
+        <h2 class="mb-4 text-primary"> Report Submitted</h2>
+        <p class="lead">Your scam report has been successfully submitted.</p>
+        <p class="text-muted">We appreciate your help in keeping the community safe.</p>
+        <div class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
+            <a href="{{ url_for('main.home') }}" class="btn btn-primary btn-lg">Back to Home</a>
+            <a href="{{ url_for('chat.chat_home') }}" class="btn btn-outline-primary btn-lg">Analyze Another Scam</a>
+            <a href="{{ url_for('main.been_scammed') }}" class="btn btn-danger btn-lg">Been Scammed?</a>
+        </div>
     </div>
 </div>
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/report_success.css') }}">
 {% endblock %}
