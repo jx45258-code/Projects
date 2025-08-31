@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Report a Scam{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/report_scam.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="report-card p-4 shadow-sm rounded">
+        <h2 class="mb-4">Report a Scam</h2>
+        <p class="text-muted mb-4">Help us keep the community safe by reporting any suspicious communications.</p>
+
+        <form method="POST" action="{{ url_for('main.submit_scam_report') }}">
+
+            <!-- Type of Scam -->
+            <div class="mb-3">
+                <label for="scam_type" class="form-label">Type of Scam</label>
+                <input type="text" class="form-control" id="scam_type" name="scam_type"
+                       placeholder="e.g., Phishing, Impersonation"
+                       value="{{ prefill.scam_type or '' }}" required>
+            </div>
+
+            <!-- Scammer's contact details (optional) -->
+            <div class="mb-3">
+                <label for="scammer_contact" class="form-label">Scammer's Contact Details (Optional)</label>
+                <input type="text" class="form-control" id="scammer_contact" name="scammer_contact"
+                       value="{{ prefill.scammer_contact or '' }}"
+                       placeholder="Phone number, email, or other contact info">
+            </div>
+
+            <!-- Amount in financial loss (optional) -->
+            <div class="mb-3">
+                <label for="financial_loss" class="form-label">Amount of Financial Loss (Optional)</label>
+                <input type="number" step="0.01" class="form-control" id="financial_loss" name="financial_loss"
+                       placeholder="e.g., 1500.00" value="{{ prefill.financial_loss or '' }}">
+            </div>
+
+            <!-- Personal contact email (optional) -->
+            <div class="mb-3">
+                <label for="reporter_email" class="form-label">Your Contact Email (Optional)</label>
+                <input type="email" class="form-control" id="reporter_email" name="reporter_email"
+                       placeholder="Your email" value="{{ prefill.reporter_email or '' }}">
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+                <label for="description" class="form-label">Description of Scam</label>
+                <textarea class="form-control" id="description" name="description" rows="5" required>{{ prefill.description or '' }}</textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Submit Report</button>
+        </form>
+    </div>
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+<div class="container my-2">
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endfor %}
+</div>
+  {% endif %}
+{% endwith %}
+{% endblock %}

@@ -1,35 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>AI Scam Test</title>
+{% extends "base.html" %}
+
+{% block title %}Scam Checked{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="chat-container my-5">
+
+    <!-- Top Input Section -->
+    <div class="chat-top-section">
+        <h2><strong>You Sure About That?</strong></h2>
+        <p class="chat-description">
+            This AI Powered ScamChecker aims to protect and educate you. Paste in either a photo or text of any communications (texts or email) and stay vigilant.
+        </p>
+
+        <form method="POST" enctype="multipart/form-data" class="chat-form">
+            <div class="mb-3">
+                <label for="user_input" class="form-label">Enter text to analyze</label>
+                <textarea class="form-control" id="user_input" name="user_input" rows="4" placeholder="Paste text here..."></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="file_input" class="form-label">Image to Text (optional)</label>
+                <input class="form-control" type="file" id="file_input" name="file_input" accept="image/*">
+            </div>
+            <button type="submit" class="btn btn-primary analyze-btn">Analyze</button>
+        </form>
+    </div>
+
+    {% if result %}
+    <!-- Analysis Result Section -->
+    <div class="chat-result-section mt-4">
+
+        <!-- Top Three Section -->
+        <div class="row mb-4 top-three">
+            <!-- Scam Score -->
+            <div class="col-md-4 scam-score-section">
+                <strong>Scam Score: <span id="scam-score-number">{{ result.score }}</span></strong>
+                <!-- Image that changes based on score -->
+                <div class="scam-score-image mt-2 text-center">
+                    <img id="speedometer" src="{{ url_for('static', filename='images/speedgreen.png') }}" alt="Score Indicator" class="img-fluid">
+                </div>
+            </div>
+
+            <!-- Factors -->
+            <div class="col-md-4 factors-section">
+                <strong>Factors:</strong>
+                {% if result.factors %}
+                <ul>
+                    {% for f in result.factors %}
+                    <li>{{ f }}</li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                None
+                {% endif %}
+            </div>
+
+            <!-- Scam Type -->
+            <div class="col-md-4 scam-type-section">
+                <strong>Scam Type:</strong> {{ result.scam_type or "N/A" }}
+            </div>
+        </div>
+
+        <!-- See more collapsible -->
+        <div class="see-more-section">
+            <span class="see-more" data-bs-toggle="collapse" data-bs-target="#moreDetails">See more</span>
+            <div class="collapse mt-2" id="moreDetails">
+                <div class="mb-2"><strong>Scammer Email:</strong> {{ result.scammer_email or "N/A" }}</div>
+                <div class="mb-2"><strong>Scammer Company:</strong> {{ result.scammer_company or "N/A" }}</div>
+                <div class="mb-2"><strong>Scammer Phone:</strong> {{ result.scammer_phone or "N/A" }}</div>
+                <div class="mb-2">
+                    <strong>Image to Text:</strong>
+                    <pre>{{ result.ocr_text or "N/A" }}</pre>
+                </div>
+                <div class="mb-2">
+                    <strong>AI Analysis:</strong>
+                    <pre id="raw-analysis" style="max-height: 300px; overflow-y: auto;">{{ result.raw_analysis or "N/A" }}</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Right Section -->
+        <div class="bottom-right">
+            <a href="{{ report_url }}" class="btn btn-warning report-btn">Report this scam</a>
+            <span class="powered-by">⚡Powered by Google Gemini</span>
+        </div>
+
+    </div>
+
     <script>
-        async function submitForm(event) {
-            event.preventDefault();
-            const form = document.getElementById("chat-form");
-            const formData = new FormData(form);
-            const response = await fetch(form.action, {
-                method: "POST",
-                body: formData
-            });
-            const result = await response.json();
-            document.getElementById("output").textContent = JSON.stringify(result, null, 2);
-        }
+        const score = {{ result.score | default(0) }};
+        const img = document.getElementById("speedometer");
+
+        if (score <= 2) img.src = "{{ url_for('static', filename='images/speed1.png') }}";
+        else if (score <= 5) img.src = "{{ url_for('static', filename='images/speed2.png') }}";
+        else if (score <= 8) img.src = "{{ url_for('static', filename='images/speed3.png') }}";
+        else img.src = "{{ url_for('static', filename='images/speed3.png') }}";
     </script>
-</head>
-<body>
-    <h1>AI Scam Analyzer Test</h1>
-    <form id="chat-form" method="POST" enctype="multipart/form-data" action="{{ url_for('chat.chat_home') }}" onsubmit="submitForm(event)">
-        <label for="user_input">Enter Text:</label><br>
-        <textarea id="user_input" name="user_input" rows="5" cols="60"></textarea><br><br>
-
-        <label for="file_input">Or upload an image:</label><br>
-        <input type="file" id="file_input" name="file_input"><br><br>
-
-        <button type="submit">Analyze</button>
-    </form>
-
-    <h2>Raw JSON Output</h2>
-    <pre id="output" style="background:#f0f0f0; padding:10px;"></pre>
-</body>
-</html>
+    {% endif %}
+</div>
+{% endblock %}

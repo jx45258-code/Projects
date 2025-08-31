@@ -1,0 +1,29 @@
+.real-or-fake-page h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.real-or-fake-page p.lead {
+    font-size: 1.25rem;
+    color: #555;
+}
+
+
+
+.carousel-inner img {
+    height: 750px; 
+    width: 100%;
+    object-fit: cover;
+}
+
+.carousel-indicators button {
+    background-color: #007bff;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.carousel-indicators .active {
+    background-color: #0056b3;
+}

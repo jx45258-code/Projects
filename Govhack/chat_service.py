@@ -5,17 +5,22 @@ from PIL import Image
 import google.generativeai as genai
 from ._ai_client import is_initialized, initialize_ai_client
 
-# Tesseract (Windows)
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 PROMPTS_JSON_PATH = os.path.join(ROOT_DIR, "files", "prompts.json")
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+
 
 def default_result(ocr_text="", ai_output=""):
     return {
-        "score": 0, "factors": [], "raw_analysis": "", "ocr_text": ocr_text,
-        "scammer_email": None, "scammer_company": None, "scammer_phone": None,
-        "scam_type": None, "raw_output": ai_output
+        "score": 0,
+        "factors": [],
+        "raw_analysis": "",
+        "ocr_text": ocr_text,
+        "scammer_email": None,
+        "scammer_company": None,
+        "scammer_phone": None,
+        "scam_type": None,
+        "raw_output": ai_output
     }
 
 def load_prompt(template_name, user_input):
@@ -37,19 +42,13 @@ def extract_text_from_image(file_path):
         return ""
 
 def clean_ai_json_output(ai_output: str) -> str:
-    """
-    Remove Markdown code block wrappers from AI output before JSON parsing.
-    """
     ai_output = ai_output.strip()
     if ai_output.startswith("```") and ai_output.endswith("```"):
-        # Strip the triple backticks
         content = ai_output[3:-3].strip()
-        # Remove optional 'json' tag at the start
         if content.lower().startswith("json"):
             content = "\n".join(content.splitlines()[1:]).strip()
         return content
     return ai_output
-
 
 def analyze_scam(user_input="", file_path=None):
     # Ensure AI client is initialized
@@ -60,16 +59,23 @@ def analyze_scam(user_input="", file_path=None):
             print(f"[AI Client] Initialization failed: {e}")
             return default_result()
 
+    # Extract text from uploaded image if available
     ocr_text = extract_text_from_image(file_path) if file_path and os.path.exists(file_path) else ""
+
+    # Merge user input and OCR text
     text_to_analyze = (user_input or "").strip()
     if ocr_text:
-        text_to_analyze += ("\n" + ocr_text.strip()) if text_to_analyze else ocr_text.strip()
+        text_to_analyze = "\n".join([text_to_analyze, ocr_text.strip()]).strip() if text_to_analyze else ocr_text.strip()
+
     if not text_to_analyze:
         return default_result(ocr_text=ocr_text)
 
-    ocr_notice = ("Note: The text may have been extracted from an image using OCR. "
-                  "Minor spelling, grammar, or formatting errors should not be counted as suspicious. "
-                  "Focus only on clear content-based indicators of scams.\n\n") if ocr_text else ""
+    # OCR notice for AI prompt
+    ocr_notice = (
+        "Note: The text may have been extracted from an image using OCR. "
+        "Minor spelling, grammar, or formatting errors should not be counted as suspicious. "
+        "Focus only on clear content-based indicators of scams.\n\n"
+    ) if ocr_text else ""
 
     prompt = ocr_notice + load_prompt("basic", text_to_analyze)
 
@@ -83,9 +89,10 @@ def analyze_scam(user_input="", file_path=None):
         print(f"Gemini call failed: {e}")
         return default_result(ocr_text=ocr_text, ai_output=ai_output)
 
-    # Clean AI output from Markdown code block wrappers
+    # Clean AI output for JSON parsing
     ai_text = clean_ai_json_output(ai_output)
 
+    # Parse AI JSON output with fallback
     try:
         parsed = json.loads(ai_text)
     except Exception as e:

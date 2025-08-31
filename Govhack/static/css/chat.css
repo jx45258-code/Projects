@@ -1,0 +1,127 @@
+/* Chat Page Styles */
+
+/* Container for the entire chat page */
+.chat-container {
+    max-width: 900px;
+    margin: 0 auto;0
+}
+/* Top Three Section */
+.top-three .scam-score-section {
+    display: flex;
+    flex-direction: column; /* Stack the image under the text */
+    align-items: flex-start; /* Keep text aligned left */
+}
+
+    .top-three .scam-score-section strong {
+        font-size: 1.2rem;
+    }
+
+.top-three .scam-score-image img {
+    max-width: 100px; /* Adjust size of speedometer image */
+}
+
+/* Optional: even spacing for all three columns */
+.top-three > .col-md-4 {
+    padding-top: 0.5rem;
+}
+
+/* Top Input Section */
+.chat-top-section {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+    .chat-top-section h2 {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+.chat-description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.chat-form .form-label {
+    font-weight: 500;
+}
+
+.chat-form .form-control {
+    border-radius: 0.25rem;
+}
+
+.chat-form .analyze-btn {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1.5rem;
+}
+
+    .chat-form .analyze-btn:hover {
+        background-color: #0056b3;
+    }
+
+/* Gap between analyze button and results */
+.chat-result-section {
+    margin-top: 2rem;
+}
+
+    /* Top three items row */
+    .chat-result-section .row {
+        margin-bottom: 1rem;
+    }
+
+/* Speedometer */
+#speedometer {
+    display: block;
+}
+
+/* See More Section */
+.see-more-section {
+    margin-top: 1rem;
+}
+
+.see-more {
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+    .see-more:hover {
+        color: #0056b3;
+    }
+/* Bottom Right Section */
+.chat-result-section .bottom-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+    margin-top: 1rem;
+}
+
+.chat-result-section .report-btn {
+    font-weight: 600;
+}
+
+.chat-result-section .powered-by {
+    color: #555;
+    font-size: 0.875rem;
+    font-style: italic;
+}
+
+
+/* AI analysis pre blocks */
+#raw-analysis {
+    background-color: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    white-space: pre-wrap;
+}
+
+/* Factors list */
+.chat-result-section ul {
+    padding-left: 1rem;
+    margin-bottom: 0;
+}

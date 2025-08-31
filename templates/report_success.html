@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Report Submitted{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="jumbotron text-center">
+        <h2 class="mb-4">Thank You!</h2>
+        <p>Your scam report has been successfully submitted.</p>
+        <p>We appreciate your help in keeping the community safe.</p>
+        <a href="{{ url_for('main.home') }}" class="btn btn-primary mt-3">Back to Home</a>
+        <a href="{{ url_for('chat.chat_home') }}" class="btn btn-secondary mt-3">Analyze Another Scam</a>
+    </div>
+</div>
+{% endblock %}

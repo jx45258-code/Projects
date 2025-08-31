@@ -1,0 +1,54 @@
+﻿{% extends "base.html" %}
+
+{% block title %}I’ve Been Scammed{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/scammed.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<div class="scammed-hero" style="background-image: url('{{ url_for('static', filename='images/banner2.png') }}');">
+</div>
+
+<!-- Main Content -->
+<div class="scammed-content">
+    <h1>I’ve Been Scammed</h1>
+    <p>Follow the steps below to protect yourself and report the scam. Stay vigilant and act quickly.</p>
+
+    <!-- Steps Section -->
+    <div class="steps">
+        <div class="step">
+            <h3><span>💳</span> Protect Your Account</h3>
+            <p>Immediately change your passwords, secure your accounts, and freeze your credit if needed.</p>
+            <p>Contact your bank as soon as possible. Major Australian banks:</p>
+            <ul>
+                <li>Commonwealth Bank: 13 2221</li>
+                <li>ANZ: 13 13 14</li>
+                <li>Westpac: 132 032</li>
+                <li>National Australia Bank (NAB): 13 22 65</li>
+                <li>Macquarie Bank: 1300 551 727</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3><span>📞</span> Report the Scam</h3>
+            <p>Contact relevant authorities and use official reporting platforms to lodge your complaint.</p>
+            <a href="{{ url_for('main.submit_scam_report') }}" class="btn btn-primary mt-2">Report a Scam</a>
+            <p class="mt-1">Alternatively, contact Scamwatch: 1300 795 995</p>
+        </div>
+
+        <div class="step">
+            <h3><span>📝</span> Document Everything</h3>
+            <p>Keep records of communications, transactions, and any evidence for authorities.</p>
+        </div>
+
+        <div class="step">
+            <h3><span>🔒</span> Protect Your Devices</h3>
+            <p>Run anti-virus scans, update software, and ensure your devices are secure from malware.</p>
+        </div>
+    </div>
+
+
+    {% endblock %}

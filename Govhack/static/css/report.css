@@ -1,0 +1,98 @@
+/* General Page Styles */
+h1 {
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+/* Search Box */
+.input-group .form-control {
+    border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.input-group .btn {
+    border-radius: 0 0.25rem 0.25rem 0;
+    background-color: #007bff;
+    color: #fff;
+    font-weight: 600;
+}
+
+    .input-group .btn:hover {
+        background-color: #0056b3;
+    }
+
+/* Table Styles */
+#caller-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+    #caller-table thead {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    #caller-table th {
+        font-weight: 600;
+        cursor: pointer;
+        vertical-align: middle;
+        text-align: left;
+    }
+
+    #caller-table td {
+        vertical-align: middle;
+    }
+
+    #caller-table tbody tr.table-warning {
+        background-color: #fff3cd !important;
+    }
+
+/* Badge Colors */
+.badge.bg-danger {
+    background-color: #dc3545;
+}
+
+.badge.bg-warning.text-dark {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.badge.bg-success {
+    background-color: #28a745;
+}
+
+.badge.bg-primary {
+    background-color: #007bff;
+}
+
+.badge.bg-secondary {
+    background-color: #6c757d;
+}
+
+/* Hover effects */
+#caller-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Card and Container */
+.card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .input-group {
+        flex-direction: column;
+    }
+
+        .input-group .btn {
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+}
